@@ -27,6 +27,7 @@ console.log(
 const postCSSLoaderOptions = {
   indent: 'postcss',
   sourceMap: isProd ? false : 'inline',
+  localIdentName: '[local]',
   plugins: (loader) => [
     stylelint(),
     require('postcss-import')({ root: loader.resourcePath }),
@@ -85,7 +86,8 @@ export default {
               url: true,
               modules: true,
               sourceMap: !isProd,
-              importLoaders: 2
+              importLoaders: 2,
+              localIdentName: '[local]'
             }
           },
           {
@@ -95,7 +97,9 @@ export default {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: !isProd
+              sourceMap: !isProd,
+              indentedSyntax: true,
+              localIdentName: '[local]'
             }
           }
         ]
@@ -110,8 +114,22 @@ export default {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]_[hash:base64:8]'
+              localIdentName: '[local]'
             }
+          }
+        ]
+      },
+      {
+        test: /\.pug$/,
+        oneOf: [
+          // this applies to `<template lang="pug">` in Vue components
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          // this applies to pug imports inside JavaScript
+          {
+            use: ['raw-loader', 'pug-plain-loader']
           }
         ]
       }
