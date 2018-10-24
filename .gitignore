@@ -59,3 +59,94 @@ typings/
 
 # next.js build output
 .next
+
+# mac
+.DS_Store
+.Trashes
+.tmp
+
+# windows
+Thumb.db
+ehthumbs.db
+Desktop.ini
+*.bak
+
+
+# emacs
+*~
+
+# vim
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Chocolat
+*.chproj
+
+# JetBrains
+.idea
+*.iml
+
+# Eclipse
+.project
+.settings
+.classpath
+
+# CokeKit
+*~ck.*
+codekit-config.json
+
+# Sass
+.sass-cache
+*.rbc
+*.sassc
+
+# Ruby
+*.rbc
+.rvmrc
+.ruby-version
+.ruby-gemsetion
+.bundle
+/vendor/bundle
+
+# Heroku
+Gemfile.lock
+
+
+# Python
+*.pyc
+*.pyo
+
+
+# merge file
+*.orig
+
+
+# SVN
+.svn
+
+# CVS
+CVS
+
+
+# VCS
+*.bk
+
+# other
+.nbproject
+.swp
+
+# Design File
+*.psd
+*.ai
+
+
+###############################################################################
+#[ gitに追加する場合はここに追加していく]
+###############################################################################
+*.ogg

@@ -30,7 +30,6 @@ const defaultStatsOptions = {
   errorDetails: true
 };
 
-
 browserSync({
   files          : [
     'app/*.pug',
@@ -51,7 +50,6 @@ browserSync({
       '/node_modules': 'node_modules'
     },
     middleware: [
-      // React-RouterのときにURLが /${hoge} となってるときにリロードすると404になるのでそれの対応。
       historyApi(),
       {
         route: '/',

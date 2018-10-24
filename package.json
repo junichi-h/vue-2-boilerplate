@@ -7,6 +7,13 @@
   "author": "Junichi Honda <junichi.hnd@gmail.com>",
   "license": "MIT",
   "private": true,
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ]
+    ]
+  },
   "scripts": {
     "start": "concurrently --kill-others --raw \"yarn run dev\"",
     "dev": "cross-env NODE_ENV=development nodemon --require @babel/register server.js --watch server.js --port 9000"
@@ -24,6 +31,7 @@
     "@babel/runtime": "^7.1.2",
     "autoprefixer": "^9.2.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^8.0.4",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "browser-sync": "^2.26.3",
@@ -35,10 +43,27 @@
     "eslint": "^5.7.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-util": "^3.0.8",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
     "jest-puppeteer": "^3.4.0",
+    "node-sass": "^4.9.4",
+    "nodemon": "^1.18.4",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-easings": "^2.0.0",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -50,14 +75,17 @@
     "puppeteer": "^1.9.0",
     "rimraf": "^2.6.2",
     "rucksack-css": "^1.0.2",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint": "^9.6.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "vue-jest": "^3.0.0",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
     "webpack": "^4.21.0",
     "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "axios": "^0.18.0",

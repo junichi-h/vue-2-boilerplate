@@ -11,6 +11,8 @@ import reporter from 'postcss-reporter';
 import browserReporter from 'postcss-browser-reporter';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 
+import { config } from './gulp/constants/config';
+
 
 
 const isProd = !!(process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'dev-prod');
@@ -49,7 +51,7 @@ export default {
   cache: true,
   target: 'web',
   output: {
-  	path: path.join(__dirname, '.tmp', 'assets', 'js'),
+    path: path.join(__dirname, config.tmp, config.assets, config.js),
     publicPath: `/${config.assets}/${config.js}/`,
     filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].js',
@@ -57,6 +59,19 @@ export default {
   },
   module: {
   	rules: [
+	  {
+        test: /\.(js)$/,
+        exclude: /(node_modules|bower_components)/,
+        include: __dirname,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ]
+      },
 	  {
 	  	test: /\.vue$/,
         use: ['vue-loader'],
@@ -78,16 +93,21 @@ export default {
 	  		{
 	  		  loader: 'postcss-loader',
 	  		  options: postCSSLoaderOptions
-	  		}
+	  		},
+	  		{
+			loader: 'sass-loader',
+			options: {
+      			sourceMap: !isProd
+			}
+	  	}
 	  	]
-      },
-      'sass-loader'
-  	],
-  	exclude: /node_modules/
+  	}
+]
   },
   resolve: {
     descriptionFiles: ['package.json'],
     enforceExtension: false,
-    modules: ['src', 'src/js', 'web_modules', 'node_modules']
+    modules: ['src', 'src/js', 'web_modules', 'node_modules'],
+    extensions: ['.js', '.sass', '.scss', '.vue']
   }
 };
