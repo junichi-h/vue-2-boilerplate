@@ -9,21 +9,19 @@ import rucksack from 'rucksack-css';
 import stylelint from 'stylelint';
 import reporter from 'postcss-reporter';
 import browserReporter from 'postcss-browser-reporter';
-import VueLoaderPlugin from 'vue-loader/lib/plugin';
 
 import { config } from './gulp/constants/config';
-
 
 
 const isProd = !!(process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'dev-prod');
 const MODE = isProd ? 'production' : 'development';
 
 console.log(
-  chalk.cyan(
-    `Attempting to bind to HOST environment variable: ${chalk.yellow(
-        chalk.bold.bgCyan(process.env.NODE_ENV)
-    )}`
-  )
+    chalk.cyan(
+        `Attempting to bind to HOST environment variable: ${chalk.yellow(
+            chalk.bold.bgCyan(process.env.NODE_ENV)
+        )}`
+    )
 );
 
 const postCSSLoaderOptions = {
@@ -38,11 +36,11 @@ const postCSSLoaderOptions = {
     mixin(),
     // doiuse({browsers: ['last 2 versions', 'not OperaMini']}),
     autoprefixer(
-      {browsers: ['last 2 versions', 'ie 9', 'ios 7', 'android 4.1'], grid: true}
+        { browsers: ['last 2 versions', 'ie 9', 'ios 7', 'android 4.1'], grid: true }
     ),
     csswring(),
     reporter(),
-    browserReporter({disabled: isProd}),
+    browserReporter({ disabled: isProd }),
   ]
 };
 
@@ -58,8 +56,8 @@ export default {
     sourceMapFilename: '[name].map'
   },
   module: {
-  	rules: [
-	  {
+    rules: [
+      {
         test: /\.(js)$/,
         exclude: /(node_modules|bower_components)/,
         include: __dirname,
@@ -72,37 +70,52 @@ export default {
           }
         ]
       },
-	  {
-	  	test: /\.vue$/,
+      {
+        test: /\.vue$/,
         use: ['vue-loader'],
         exclude: /node_modules/
-	  },
-	  {
-	  	test: /\.(scss|sass)$/,
-	  	use: [
-	  		'vue-style-loader',
-	  		{
-	  		  loader: 'css-loader',
-	  		  options: {
-	  		  	url: true,
-                modules: true,
-                sourceMap: !isProd,
-                importLoaders: 2
-	  		  }
-	  		},
-	  		{
-	  		  loader: 'postcss-loader',
-	  		  options: postCSSLoaderOptions
-	  		},
-	  		{
-			loader: 'sass-loader',
-			options: {
-      			sourceMap: !isProd
-			}
-	  	}
-	  	]
-  	}
-]
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          'vue-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              modules: true,
+              sourceMap: !isProd,
+              importLoaders: 2
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: postCSSLoaderOptions
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: !isProd
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:base64:8]'
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: {
     descriptionFiles: ['package.json'],

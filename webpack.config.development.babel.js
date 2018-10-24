@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
+import VueLoaderPlugin from 'vue-loader/lib/plugin';
 
 import baseConfig from './webpack.config.base';
 import { config } from './gulp/constants/config';
@@ -27,6 +28,7 @@ export default merge.smart(baseConfig, {
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.LoaderOptionsPlugin({ debug: true })
+		new webpack.LoaderOptionsPlugin({ debug: true }),
+		new VueLoaderPlugin()
 	]
 });
