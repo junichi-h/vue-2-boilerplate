@@ -1,3 +1,4 @@
+import 'ress/ress.css';
 import Vue from 'vue';
 
 import App from './app.vue';

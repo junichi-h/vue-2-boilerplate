@@ -1,15 +1,20 @@
 <template lang="pug">
     #app
         h1 {{msg}}
-        h2 foo
+        h2.title testes
+        Button(label="hoge")
 </template>
 
 <script>
+  import Button from './components/button.vue';
   export default {
     name: 'app',
+    components: {
+      Button
+    },
     data () {
       return {
-        msg: '000'
+        msg: 'test'
       }
     }
   }
@@ -18,8 +23,9 @@
 <style lang="sass" scoped>
     #app
         font-family: 'Avenir', Helvetica, Arial, sans-serif
-        display: flex
-        color: #ff00ff
-        margin:
-            top: 10px
+        position: relative
+
+        .title
+            text:
+                align: center
 </style>
