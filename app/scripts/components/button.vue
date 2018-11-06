@@ -6,11 +6,13 @@
   export default {
     name: 'Button',
     props: {
-      label: String
+      label: String,
+      click: Function
     },
     methods: {
       onClick(event) {
         event.preventDefault();
+        this.click();
       }
     }
   }
